@@ -5,7 +5,7 @@ import br.com.banco.core.exception.enums.ErrorCodeEnum;
 
 import java.time.LocalDateTime;
 
-public class TrasactionPin {
+public class TransactionPin {
     private Long id;
     private User user;
     private String pin;
@@ -13,8 +13,7 @@ public class TrasactionPin {
     private Boolean blocked;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
-    public TrasactionPin(Long id, User user, String pin, Integer attempt, Boolean blocked, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public TransactionPin(Long id, User user, String pin, Integer attempt, Boolean blocked, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.user = user;
         this.pin = pin;
@@ -25,7 +24,7 @@ public class TrasactionPin {
 
     }
 
-    public TrasactionPin(User user, String pin, Integer attempt, Boolean blocked) {
+    public TransactionPin(User user, String pin, Integer attempt, Boolean blocked) {
         this.user = user;
         this.pin = pin;
         this.attempt = attempt;
@@ -35,7 +34,7 @@ public class TrasactionPin {
 
     }
 
-    public TrasactionPin() {
+    public TransactionPin() {
     }
 
     public Long getId() {

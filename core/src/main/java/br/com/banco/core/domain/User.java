@@ -12,29 +12,29 @@ public class User {
     private TaxNumber taxNumber;
     private String fullName;
     private UserTypeEnum type;
-    private TrasactionPin trasactionPin;
+    private TransactionPin transactionPin;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public User(UUID id, String email, String password, TaxNumber taxNumber, String fullName, UserTypeEnum type, TrasactionPin trasactionPin, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public User(UUID id, String email, String password, TaxNumber taxNumber, String fullName, UserTypeEnum type, TransactionPin transactionPin, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.taxNumber = taxNumber;
         this.fullName = fullName;
         this.type = type;
-        this.trasactionPin = trasactionPin;
+        this.transactionPin = transactionPin;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
-    public User(String email, String password, TaxNumber taxNumber, String fullName, UserTypeEnum type, TrasactionPin trasactionPin) {
+    public User(String email, String password, TaxNumber taxNumber, String fullName, UserTypeEnum type, TransactionPin transactionPin) {
         this.email = email;
         this.password = password;
         this.taxNumber = taxNumber;
         this.fullName = fullName;
         this.type = type;
-        this.trasactionPin = trasactionPin;
+        this.transactionPin = transactionPin;
     }
 
     public User() {
@@ -88,12 +88,12 @@ public class User {
         this.type = type;
     }
 
-    public TrasactionPin getTrasactionPin() {
-        return trasactionPin;
+    public TransactionPin getTrasactionPin() {
+        return transactionPin;
     }
 
-    public void setTrasactionPin(TrasactionPin trasactionPin) {
-        this.trasactionPin = trasactionPin;
+    public void setTrasactionPin(TransactionPin transactionPin) {
+        this.transactionPin = transactionPin;
     }
 
     public LocalDateTime getCreatedAt() {
