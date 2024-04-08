@@ -3,6 +3,8 @@ package br.com.banco.core.exception.enums;
 public enum ErrorCodeEnum {
 
     ON0001("Tax number invalid", "ON-0001"),
+    ON0002("Tax number unavailable", "ON-0002"),
+    ON0003("Email unavailable", "ON-00023"),
 
     TR0001("Shopkeeper user cannot make a transfer", "TR-0001"),
     TR0002("Unavailable balance", "TR-0002"),

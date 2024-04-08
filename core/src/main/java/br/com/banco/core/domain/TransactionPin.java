@@ -13,6 +13,7 @@ public class TransactionPin {
     private Boolean blocked;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
     public TransactionPin(Long id, User user, String pin, Integer attempt, Boolean blocked, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.user = user;
@@ -24,11 +25,11 @@ public class TransactionPin {
 
     }
 
-    public TransactionPin(User user, String pin, Integer attempt, Boolean blocked) {
+    public TransactionPin(User user, String pin) throws TrasactionPinException {
         this.user = user;
-        this.pin = pin;
-        this.attempt = attempt;
-        this.blocked = blocked;
+        setPin(pin);
+        this.attempt = 3;
+        this.blocked = false;
 
         this.createdAt = LocalDateTime.now();
 

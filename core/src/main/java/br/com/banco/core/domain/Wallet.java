@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Wallet {
-    private Long id;
+    private Long id; // id of the wallet
     private BigDecimal balance;
     private User user;
     private LocalDateTime createdAt;
