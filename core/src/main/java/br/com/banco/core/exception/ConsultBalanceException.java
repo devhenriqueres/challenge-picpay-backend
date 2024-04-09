@@ -1,9 +1,9 @@
 package br.com.banco.core.exception;
 
-public class InternalServerError extends Exception{
+public class ConsultBalanceException extends Exception{
     private String code;
 
-    public InternalServerError(String code, String message) {
+    public ConsultBalanceException(String code, String message) {
         super(message);
         this.code = code;
     }

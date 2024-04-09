@@ -1,9 +1,10 @@
 package br.com.banco.core.exception;
 
-public class NotFound extends Exception{
+public class TrasactionException extends Exception {
+
     private String code;
 
-    public NotFound(String code, String message) {
+    public TrasactionException(String message, String code) {
         super(message);
         this.code = code;
     }
