@@ -4,19 +4,18 @@ import br.com.banco.core.exception.TrasactionPinException;
 import br.com.banco.core.exception.enums.ErrorCodeEnum;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class TransactionPin {
     private Long id;
-    private User user;
     private String pin;
     private Integer attempt;
     private Boolean blocked;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public TransactionPin(Long id, User user, String pin, Integer attempt, Boolean blocked, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public TransactionPin(Long id, String pin, Integer attempt, Boolean blocked, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
-        this.user = user;
         this.pin = pin;
         this.attempt = attempt;
         this.blocked = blocked;
@@ -25,8 +24,8 @@ public class TransactionPin {
 
     }
 
-    public TransactionPin(User user, String pin) throws TrasactionPinException {
-        this.user = user;
+    public TransactionPin(String pin) throws TrasactionPinException {
+
         setPin(pin);
         this.attempt = 3;
         this.blocked = false;
@@ -46,14 +45,6 @@ public class TransactionPin {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public String getPin() {
         return pin;
     }
@@ -64,7 +55,7 @@ public class TransactionPin {
     }
 
     private void pinIsValid(String pin) throws TrasactionPinException {
-        if (pin.length() != 8){
+        if (pin.length() != 8) {
             throw new TrasactionPinException(ErrorCodeEnum.TP0001.getMessage(), ErrorCodeEnum.TP0001.getCode());
         }
     }
@@ -73,8 +64,17 @@ public class TransactionPin {
         return attempt;
     }
 
-    public void setAttempt(Integer attempt) {
-        this.attempt = attempt;
+    public void setAttempt() {
+        if (this.attempt == 0) {
+            setBlocked(true);
+            this.attempt = 0;
+        } else {
+            this.attempt = this.attempt - 1;
+        }
+    }
+
+    public void resetAttempt() {
+        this.attempt = 3;
     }
 
     public Boolean getBlocked() {
@@ -95,5 +95,24 @@ public class TransactionPin {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TransactionPin that)) return false;
+
+        return Objects.equals(getId(), that.getId()) && getPin().equals(that.getPin()) && getAttempt().equals(that.getAttempt()) && getBlocked().equals(that.getBlocked()) && getCreatedAt().equals(that.getCreatedAt()) && Objects.equals(getUpdatedAt(), that.getUpdatedAt());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hashCode(getId());
+        result = 31 * result + getPin().hashCode();
+        result = 31 * result + getAttempt().hashCode();
+        result = 31 * result + getBlocked().hashCode();
+        result = 31 * result + getCreatedAt().hashCode();
+        result = 31 * result + Objects.hashCode(getUpdatedAt());
+        return result;
     }
 }

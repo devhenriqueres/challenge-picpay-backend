@@ -17,6 +17,10 @@ public enum ErrorCodeEnum {
     // Pin creating
     TP0001("The pin must have 8 digits", "TP-0001"),
 
+    // Pin
+    PIN0001("The transaction pin is blocked", "PIN-0001"),
+    PIN0002("Incorrect Pin, %d remaining attempts", "PIN-0002"),
+
     // Wallet
     WT0001("Wallet not found", "WT-0001"),
 
@@ -53,5 +57,9 @@ public enum ErrorCodeEnum {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public static String pinGetMessage(Integer attempt) {
+        return String.format(PIN0002.message, attempt);
     }
 }

@@ -26,6 +26,8 @@ out/
 .settings
 .springBeans
 .sts4-cache
+usecase/.classpath
+usecase/.project
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/

@@ -9,7 +9,9 @@ import br.com.banco.core.exception.InternalServerErrorException;
 import br.com.banco.core.exception.TaxNumberException;
 import br.com.banco.core.exception.TrasactionPinException;
 import br.com.banco.core.exception.enums.ErrorCodeEnum;
-import br.com.banco.usecase.*;
+import br.com.banco.usecase.CreateUserUseCase;
+import br.com.banco.usecase.EmailAvailableUseCase;
+import br.com.banco.usecase.TaxNumberAvailableUseCase;
 
 import java.math.BigDecimal;
 
@@ -37,7 +39,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
             throw new EmailException(ErrorCodeEnum.ON0003.getCode(), ErrorCodeEnum.ON0003.getMessage());
         }
 
-        if (!createUserGateway.create(user, new Wallet(BigDecimal.ZERO, user), new TransactionPin(user, pin))){
+        if (!createUserGateway.create(user, new Wallet(new TransactionPin(pin), BigDecimal.ZERO, user))) {
             throw new InternalServerErrorException(ErrorCodeEnum.ON0004.getMessage(), ErrorCodeEnum.ON0004.getCode());
         }
 
